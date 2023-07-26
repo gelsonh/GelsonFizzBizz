@@ -1,19 +1,7 @@
-// getting the numbers from the page,
-// validate the inputs we collected,
-// then pass the values to the functions
 function getValues() {
-  let fizz = document.getElementById("fizzValue").value;
-  let buzz = document.getElementById("buzzValue").value;
-  let stop = document.getElementById("stopValue").value;
-
-  fizz = Number(fizz);
-  buzz = Number(buzz);
-  stop = Number(stop);
-
-  // TODO: Make sure they're valid
-  fizz = parseInt(fizz);
-  buzz = parseInt(buzz);
-  stop = parseInt(stop);
+  let fizz = parseInt(document.getElementById("fizzValue").value);
+  let buzz = parseInt(document.getElementById("buzzValue").value);
+  let stop = parseInt(document.getElementById("stopValue").value);
 
   if (
     Number.isInteger(fizz) &&
@@ -34,8 +22,7 @@ function getValues() {
   }
 }
 
-// create an array of values according
-// to the FizzBizz rules e,g [1, 2, "Fizz", 4, "Buzz"]
+// Create an array of values according to the FizzBizz rules e.g. [1, 2, "Fizz", 4, "Buzz"]
 function generateFizzBuzz(fizz, buzz, stop) {
   let array = [];
 
@@ -54,6 +41,7 @@ function generateFizzBuzz(fizz, buzz, stop) {
   return array;
 }
 
+// Take in an array of values and display them on the page
 function displayFizzBuzz(array) {
   let fizzBuzzHTML = "";
 
@@ -64,7 +52,5 @@ function displayFizzBuzz(array) {
     fizzBuzzHTML += `<div class="col ${value}"> ${value} </div>`;
   }
 
-  let resultsRow = document.getElementById("results");
-
-  resultsRow.innerHTML = fizzBuzzHTML;
+  document.getElementById("results").innerHTML = fizzBuzzHTML;
 }
