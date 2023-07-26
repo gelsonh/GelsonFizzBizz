@@ -1,48 +1,41 @@
-// // Get the numbers from our form inputs
-// // ENTRY POINT
-// // Controller Function
-
+// getting the numbers from the page,
+// validate the inputs we collected,
+// then pass the values to the functions
 function getValues() {
-  let fizzNumber = document.getElementById("fizzValue").value;
-  let buzzNumber = document.getElementById("buzzValue").value;
-  let stopNumber = document.getElementById("stopValue").value;
+  let fizz = document.getElementById("fizzValue").value;
+  let buzz = document.getElementById("buzzValue").value;
+  let stop = document.getElementById("stopValue").value;
 
-  fizzNumber = Number(fizzNumber);
-  buzzNumber = Number(buzzNumber);
-  stopNumber = Number(stopNumber);
+  fizz = Number(fizz);
+  buzz = Number(buzz);
+  stop = Number(stop);
+
+  // TODO: Make sure they're valid
+  fizz = parseInt(fizz);
+  buzz = parseInt(buzz);
+  stop = parseInt(stop);
 
   if (
-    isNaN(fizzNumber) == true ||
-    isNaN(buzzNumber) == true ||
-    isNaN(stopNumber) == true
+    Number.isInteger(fizz) &&
+    Number.isInteger(buzz) &&
+    Number.isInteger(stop) &&
+    stop <= 100 &&
+    stop > 0
   ) {
-    Swal.fire({
-      title: "Oops!",
-      text: "Fizz Buzz only works with numbers.",
-      icon: "error",
-      backdrop: false,
-    });
-  } else if (fizzNumber > buzzNumber) {
-    Swal.fire({
-      title: "Oops!",
-      text: "The Fizz number must be less than the Buzz number",
-      icon: "error",
-      backdrop: false,
-    });
-  } else if (stopNumber > 100) {
-    Swal.fire({
-      title: "Oops!",
-      text: "The max number must be 100",
-      icon: "error",
-      backdrop: false,
-    });
+    let fizzBuzzes = generateFizzBuzz(fizz, buzz, stop);
+    displayFizzBuzz(fizzBuzzes);
   } else {
-    let numberArray = generateFizzBuzz(fizzNumber, buzzNumber, stopNumber);
-
-    displayFizzBuzz(numberArray, fizzNumber, buzzNumber, stopNumber);
+    Swal.fire({
+      title: "Oh no!",
+      text: "Please enter valid integers and make sure the end number is below 100",
+      icon: "error",
+      backdrop: false,
+    });
   }
 }
 
+// create an array of values according
+// to the FizzBizz rules e,g [1, 2, "Fizz", 4, "Buzz"]
 function generateFizzBuzz(fizz, buzz, stop) {
   let array = [];
 
@@ -61,26 +54,17 @@ function generateFizzBuzz(fizz, buzz, stop) {
   return array;
 }
 
-function displayFizzBuzz(numbersToDisplay) {
-  let tableHtml = "";
+function displayFizzBuzz(array) {
+  let fizzBuzzHTML = "";
 
-  for (let i = 0; i < numbersToDisplay.length; i++) {
-    let currentNumber = numbersToDisplay[i];
+  for (let i = 0; i < array.length; i++) {
+    let value = array[i];
+    let backgroundColor = "";
 
-    let className = "";
-
-    if (currentNumber % fizzValue === 0 && currentNumber % buzzValue === 0) {
-      className = "FizzBuzz";
-    } else if (currentNumber % fizzValue === 0) {
-      className = "Fizz";
-    } else if (currentNumber % buzzValue === 0) {
-      className = "Buzz";
-    }
-
-    let tableRowHtml = `<tr><td class="${className}">${currentNumber} </td></tr>`;
-
-    tableHtml += tableRowHtml;
+    fizzBuzzHTML += `<div class="col ${value}"> ${value} </div>`;
   }
 
-  document.getElementById("results").innerHTML = tableHtml;
+  let resultsRow = document.getElementById("results");
+
+  resultsRow.innerHTML = fizzBuzzHTML;
 }
