@@ -47,10 +47,20 @@ function displayFizzBuzz(array) {
 
   for (let i = 0; i < array.length; i++) {
     let value = array[i];
-    let backgroundColor = "";
+    let className = "";
 
-    fizzBuzzHTML += `<div class="col ${value}"> ${value} </div>`;
+    if (value === "Fizz") {
+      className = "fizz-color";
+    } else if (value === "Buzz") {
+      className = "buzz-color";
+    } else if (value === "FizzBuzz") {
+      className = "fizzbuzz-color";
+    }
+
+    fizzBuzzHTML += `<div class="col ${className}"> ${value} </div>`;
   }
 
   document.getElementById("results").innerHTML = fizzBuzzHTML;
 }
+
+

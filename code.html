@@ -40,7 +40,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/index.html">
-            <img src="/img/mainLogo1.png" height="30" alt="developer logo" />
+            <img src="/img/NLogo0.png" height="50" alt="developer logo" />
             &nbsp;App Name</a
           >
           <button
@@ -57,7 +57,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="/index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/app.html">The App</a>
@@ -68,7 +68,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://github.com/gelsonh"
+                <a
+                  class="nav-link"
+                  href="https://github.com/gelsonh/GelsonFizzBizz"
                   >The Repo</a
                 >
               </li>
@@ -141,23 +143,62 @@
               
                 for (let i = 0; i < array.length; i++) {
                   let value = array[i];
-                  let backgroundColor = "";
+                  let className = "";
               
-                  fizzBuzzHTML += `<div class="col ${value}"> ${value} </div>`;
+                  if (value === "Fizz") {
+                    className = "fizz-color";
+                  } else if (value === "Buzz") {
+                    className = "buzz-color";
+                  } else if (value === "FizzBuzz") {
+                    className = "fizzbuzz-color";
+                  }
+              
+                  fizzBuzzHTML += `<div class="col ${className}"> ${value} </div>`;
                 }
               
                 document.getElementById("results").innerHTML = fizzBuzzHTML;
-              }
-              
+              }             
+                
             </code>
           </pre>
         </div>
         <div class="col-12 col-lg-4">
-          <p>The code is structured in one function</p>
-          <h5>displayMessage</h5>
+          <h5>Description</h5>
+          <hr />
           <p>
-            Shows a SweetAlert with the value of the
-            <code>message</code>variable
+            The game takes in three values: <code>fizz, buzz, and stop</code>.
+            These values are retrieved from the <code>>HTML</code> page using
+            the <code>document.getElementById</code> method and then parsed into
+            integers using the <code>parseInt</code> function. The
+            <code>getValues</code>
+            function checks if the entered values are valid integers and if the
+            stop value is <code>less than or equal to 100</code>. If the values
+            are valid, the function calls the
+            <code>generateFizzBuzz</code> function, passing in the
+            <code>fizz, buzz, and stop</code> values as arguments.
+            <br />
+
+            The <code>generateFizzBuzz</code> function generates an
+            <code>array</code> of values according to the
+            <code>FizzBuzz</code> rules. It iterates from
+            <code>1 to the stop</code> value and checks if the current number is
+            divisible by both <code>fizz and buzz</code>, in which case it
+            pushes <code>“FizzBuzz”</code> to the array. If it is only divisible
+            by <code>fizz, it pushes “Fizz” to the array</code>. If it is only
+            divisible by <code>buzz, it pushes “Buzz” to the array</code>.
+            Otherwise, it pushes the number itself to the array.
+            <br />
+
+            The resulting array is then passed to the displayFizzBuzz function,
+            which takes in an array of values and displays them on the page. The
+            function iterates over the array and creates an HTML string with a
+            <code>"div"</code> element for each value. The class name of each
+            <code>"div"</code> is determined based on whether the value is
+            <code>“Fizz”, “Buzz”, or “FizzBuzz”</code>. The resulting HTML
+            string is then added to the page using the
+            <code>innerHTML</code> property of an element with id
+            <code>“results”</code>. If the entered values are not valid, an
+            error message is displayed using the SweetAlert library.
           </p>
         </div>
       </div>
@@ -171,7 +212,7 @@
           <div class="col text-lg-start">&copy; 2023 Gelson Hernandez</div>
           <div class="col">
             <!-- changed for logo name -->
-            <img src="/img/mainLogo1.png" height="30" />
+            <img src="/img/NLogo0.png" height="50" />
           </div>
           <div class="col text-lg-end">
             <a href="#"><i class="socialicons bi bi-linkedin"></i></a>
