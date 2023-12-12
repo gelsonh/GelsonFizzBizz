@@ -41,6 +41,7 @@ function generateFizzBuzz(fizz, buzz, stop) {
   return array;
 }
 
+
 // Take in an array of values and display them on the page
 function displayFizzBuzz(array) {
   let fizzBuzzHTML = "";
